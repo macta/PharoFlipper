@@ -18,22 +18,22 @@ Class {
 { #category : #internal }
 PharoFlipper class >> flipToPreviousWindow [
 
-	| prevWindowIndex |
+	| prevWindowIndex window |
 	
-	prevWindowIndex := self hasLastFlipTimedOut
+	prevWindowIndex := self hasFlipTimedOut
 		                   ifTrue: [ 2 ]
 		                   ifFalse: [ self lastWindowIndex + 1 ].
 
 	self updateSwitchIndex: prevWindowIndex.
 
-	(self systemWindows at: prevWindowIndex ifAbsent: [ ^self ]) activate 
+	(window := self systemWindows at: prevWindowIndex ifAbsent: [ ^ self ]) activate. 
+	self currentWorld taskbars do: [ :tb | (tb taskOf: window) ifNotNil: [ tb updateTaskButtons ]]
 ]
 
 { #category : #internal }
-PharoFlipper class >> hasLastFlipTimedOut [
+PharoFlipper class >> hasFlipTimedOut [
 
-	^ (Time millisecondsSince: self lastFlipTimestamp) > 1000
-		            
+	^ (Time millisecondsSince: self lastFlipTimestamp) > self timeoutValue
 ]
 
 { #category : #internal }
@@ -47,7 +47,7 @@ PharoFlipper class >> installShortcut [
 { #category : #accessing }
 PharoFlipper class >> keyboardShortcut [
 
-	^ keyboardShortcut ifNil: [ self keyboardShortcut: $1 alt asShortcut ]
+	^ keyboardShortcut ifNil: [ self keyboardShortcut: $1 meta asShortcut ]
 ]
 
 { #category : #accessing }
@@ -72,6 +72,12 @@ PharoFlipper class >> lastWindowIndex [
 PharoFlipper class >> systemWindows [
 
 	^ self currentWorld submorphs select: #isSystemWindow
+]
+
+{ #category : #internal }
+PharoFlipper class >> timeoutValue [
+
+	^ 1000
 ]
 
 { #category : #internal }
