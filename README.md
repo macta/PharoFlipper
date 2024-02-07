@@ -3,9 +3,9 @@ A simple Pharo Smalltalk keyboard window flipper - use Alt-1 to flip to the last
 
 To load use:
 
-`
+```
 Metacello new
   repository: 'github://macta/PharoFlipper';
   baseline: 'PharoFlipper';
   load.
-`
+```
