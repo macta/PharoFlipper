@@ -1,3 +1,6 @@
+"
+Baseline to load PharoFlipper. NOTE: does initialisation on load.
+"
 Class {
 	#name : #BaselineOfPharoFlipper,
 	#superclass : #BaselineOf,
