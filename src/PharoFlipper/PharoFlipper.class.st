@@ -77,7 +77,7 @@ PharoFlipper class >> systemWindows [
 { #category : #internal }
 PharoFlipper class >> timeoutValue [
 
-	^ 1000
+	^ 2000
 ]
 
 { #category : #internal }
