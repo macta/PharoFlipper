@@ -2,7 +2,7 @@
 I am a singleton that handles basic LRU window flipping by hooking a global shortcut key and looking at the list of SystemWindows in the World.
 
 The default keboard shortcut can be altered with:
-`self keyboardShortcut: $1 meta asShortcut
+`self keyboardShortcut: $1 control asShortcut
 "
 Class {
 	#name : #PharoFlipper,
@@ -47,7 +47,7 @@ PharoFlipper class >> installShortcut [
 { #category : #accessing }
 PharoFlipper class >> keyboardShortcut [
 
-	^ keyboardShortcut ifNil: [ self keyboardShortcut: $1 meta asShortcut ]
+	^ keyboardShortcut ifNil: [ self keyboardShortcut: $1 control asShortcut ]
 ]
 
 { #category : #accessing }
