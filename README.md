@@ -5,7 +5,13 @@ To load use:
 
 ```
 Metacello new
-  repository: 'github://macta/PharoFlipper';
+  repository: 'github://macta/PharoFlipper:main';
   baseline: 'PharoFlipper';
   load.
+```
+
+The default keboard shortcut can be altered with either of:
+```
+self keyboardShortcut: $1 control asShortcut.
+self keyboardShortcut: $1 meta asShortcut.
 ```
